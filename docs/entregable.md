@@ -76,8 +76,8 @@ divide entre ellas.
 
 ### Cómo se entrega
 
-En el repo privado del curso, `github.com/jcarriolaa/BigData-2026-S2-entregas`, con una **rama por estudiante**
-y un **Pull Request** que marca la entrega. La guía paso a paso, con checkpoints, está en
+En este mismo repo, con una **rama por estudiante**, una carpeta dentro de `entregas/` y un **Pull Request** que
+marca la entrega. La guía paso a paso, con checkpoints, está en
 [`entrega-git.md`](entrega-git.md). En resumen:
 
 | Qué | Cómo |

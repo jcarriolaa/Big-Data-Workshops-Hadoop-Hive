@@ -1,14 +1,14 @@
 # Cómo entregar la bitácora con git
 
-La entrega se hace en un repositorio **privado** del curso, con una **rama** por estudiante y un **Pull Request**
-(PR) que marca que terminaste. Nada de esto es público: solo el catedrático y los estudiantes del curso lo ven.
+La entrega se hace en **este mismo repositorio** (el del taller, que ya clonaste en el Paso 0.2), con una **rama**
+por estudiante, una carpeta dentro de `entregas/` y un **Pull Request** (PR) que marca que terminaste.
 
 Son cinco pasos. Si nunca has usado git, calcula 20 minutos la primera vez.
 
 ## Qué es cada cosa
 
-- **Repositorio (repo):** una carpeta con historial de cambios, alojada en GitHub. El de entregas es
-  `github.com/jcarriolaa/BigData-2026-S2-entregas`.
+- **Repositorio (repo):** una carpeta con historial de cambios, alojada en GitHub. Es el del taller:
+  `github.com/jcarriolaa/Big-Data-Workshops-Hadoop-Hive`.
 - **Rama (branch):** una copia de trabajo dentro del repo. Tú trabajas en la tuya y no tocas la de nadie.
 - **Commit:** una "foto" de tus archivos con un mensaje. Puedes hacer varios.
 - **Push:** subir tus commits a GitHub.
@@ -20,7 +20,8 @@ Son cinco pasos. Si nunca has usado git, calcula 20 minutos la primera vez.
 1. Instala git si no lo tienes: [git-scm.com/downloads](https://git-scm.com/downloads). En Mac también sirve
    `xcode-select --install`. En Windows instala **Git for Windows** (trae Git Bash).
 2. Crea una cuenta en [github.com](https://github.com) si no tienes, y manda tu usuario de GitHub al catedrático
-   por el medio que indique. Sin eso no vas a poder entrar al repo privado.
+   por el medio que indique. Él te agrega como colaborador y GitHub te manda una invitación por correo
+   (*"jcarriolaa invited you to collaborate"*): **acéptala**. Sin eso, puedes leer el repo pero no subir tu rama.
 3. Configura tu nombre y correo (una sola vez en tu laptop):
 
 ```bash
@@ -38,23 +39,26 @@ git --version
 git version 2.4x.x
 ```
 
-Y en GitHub, **con tu sesión iniciada**, al abrir <https://github.com/jcarriolaa/BigData-2026-S2-entregas> debes ver
-el repo, no un 404. El repo es privado: GitHub muestra 404 a cualquiera que no haya sido agregado. Si ves 404, revisa
-que iniciaste sesión con el usuario que le mandaste al catedrático, y que aceptaste la invitación que GitHub te envió
-por correo (*"jcarriolaa invited you to collaborate"*). Si no te ha llegado, avísale.
+Y en GitHub, con tu sesión iniciada, en <https://github.com/jcarriolaa/Big-Data-Workshops-Hadoop-Hive> debes aparecer
+como colaborador: si aceptaste la invitación, el repo te muestra el botón de *Watch/Unwatch* normal y, en
+*Settings → Collaborators* del catedrático, tu usuario. La forma más simple de comprobarlo es el Paso 4: si el
+`push` funciona, estás dentro.
 
-## Paso 2: Clona el repo y crea tu rama
+## Paso 2: Crea tu rama
 
-El nombre de la rama es `entrega-<carné>-<nombre>-<apellido>`, todo en minúsculas, sin tildes ni espacios.
+No hay que clonar nada nuevo: usas la carpeta del taller que ya tienes. El nombre de la rama es
+`entrega-<carné>-<nombre>-<apellido>`, todo en minúsculas, sin tildes ni espacios.
 
 ```bash
-git clone https://github.com/jcarriolaa/BigData-2026-S2-entregas.git
-cd BigData-2026-S2-entregas
+cd Big-Data-Workshops-Hadoop-Hive                 # <- la carpeta del taller
+git checkout main
+git pull
 git checkout -b entrega-20231234-ana-morales      # <- con tu carné y tu nombre
 ```
 
-La primera vez, git te pedirá iniciar sesión en GitHub (se abre el navegador o pide usuario y token). Sigue las
-instrucciones en pantalla.
+Si descargaste el taller como ZIP en vez de clonarlo, primero clónalo:
+`git clone https://github.com/jcarriolaa/Big-Data-Workshops-Hadoop-Hive.git` y copia ahí tu `docker-compose.yml`
+y tu `config/`.
 
 ### ✅ Checkpoint
 
@@ -70,19 +74,21 @@ entrega-20231234-ana-morales
 
 | Síntoma | Causa y arreglo |
 |---|---|
-| `Repository not found` al clonar | No tienes acceso todavía o el nombre está mal escrito. Revisa el Paso 1. |
+| `git pull` dice que hay cambios locales sin guardar | Son tu `docker-compose.yml` y tu `config/`: son tuyos y no estorban. Si el error persiste, `git stash`, `git pull`, `git stash pop`. |
 | Te pide contraseña y la rechaza | GitHub no acepta la contraseña de la cuenta por git. Usa el inicio de sesión del navegador que ofrece Git Credential Manager (Windows/Mac lo traen), o crea un *personal access token* en GitHub → Settings → Developer settings. |
 | `fatal: A branch named ... already exists` | Ya la creaste antes. Solo cámbiate a ella: `git checkout entrega-...`. |
 
 ## Paso 3: Crea tu carpeta y copia tus archivos
 
-Tu carpeta es `entregas/G#/<carné>-<nombre>-<apellido>/`. **No toques nada fuera de ella.**
+Tu carpeta es `entregas/G#/<carné>-<nombre>-<apellido>/`. **No toques nada fuera de ella**: ni el README, ni
+`data/`, ni `scripts/`, ni las carpetas de otros. Tu `docker-compose.yml` y tu `config/` de la raíz **no se suben**
+tal cual; se copian dentro de tu carpeta.
 
 ```bash
 mkdir -p entregas/G2/20231234-ana-morales/capturas      # <- tu grupo, tu carné, tu nombre
 ```
 
-Copia dentro, desde tu carpeta del taller:
+Copia dentro:
 
 | Qué | De dónde | A dónde |
 |---|---|---|
@@ -93,11 +99,13 @@ Copia dentro, desde tu carpeta del taller:
 | Tus XML | la carpeta `config/` completa del taller | `config/` |
 | Autovalidación | salida de `bash scripts/check.sh cluster` y `bash scripts/check.sh hive`, pegada tal cual | `check.txt` |
 
-Para `check.txt`, desde la carpeta del taller (con el clúster levantado):
+Para `check.txt`, con el clúster levantado:
 
 ```bash
-bash scripts/check.sh cluster > /ruta/a/entregas/G2/20231234-ana-morales/check.txt
-bash scripts/check.sh hive   >> /ruta/a/entregas/G2/20231234-ana-morales/check.txt
+bash scripts/check.sh cluster >  entregas/G2/20231234-ana-morales/check.txt
+bash scripts/check.sh hive    >> entregas/G2/20231234-ana-morales/check.txt
+cp docker-compose.yml            entregas/G2/20231234-ana-morales/
+cp -r config                     entregas/G2/20231234-ana-morales/
 ```
 
 **No subas** los CSV de `data/`, ni volúmenes de Docker, ni archivos `.DS_Store`.
@@ -132,7 +140,8 @@ git commit -m "Entrega taller Hadoop-Hive - Ana Morales"
 git push -u origin entrega-20231234-ana-morales
 ```
 
-Puedes repetir estos tres comandos las veces que quieras (por ejemplo, si corriges una respuesta). Cada `push`
+La primera vez, git te pedirá iniciar sesión en GitHub (se abre el navegador o pide usuario y token). Sigue las
+instrucciones en pantalla. Puedes repetir estos tres comandos las veces que quieras (por ejemplo, si corriges una respuesta). Cada `push`
 actualiza tu rama.
 
 ### ✅ Checkpoint
@@ -158,13 +167,14 @@ Y en GitHub, en el desplegable de ramas del repo, aparece la tuya.
 | `Please tell me who you are` | Falta el Paso 1.3 (`git config --global user.name/email`). |
 | `remote: error: File ... is 25.00 MB; this exceeds GitHub's file size limit` | Una captura o archivo demasiado grande. Comprímela o recórtala; máximo 1 MB por imagen. Quítala del commit con `git rm --cached <archivo>` y vuelve a commitear. |
 | `git push` dice `main -> main` en vez de tu rama | Hiciste push a `main` por error. Avísale al catedrático de inmediato (se revierte sin problema) y revisa que estés en tu rama con `git branch --show-current`. |
-| `Permission denied` / `403` | Tu usuario de GitHub no está en el repo. Ver Paso 1.2. |
+| `Permission denied` / `403` / `remote: Write access to repository not granted` | No aceptaste la invitación de colaborador, o iniciaste sesión con otro usuario. Ver Paso 1.2. |
+| `git status` muestra `docker-compose.yml` y `config/` de la raíz como cambios | Es normal: son tus archivos del taller. No los agregues al commit; solo `git add entregas/G#/<tu carpeta>`. |
 
 ## Paso 5: Abre el Pull Request
 
 Esto se hace en el navegador:
 
-1. Entra a <https://github.com/jcarriolaa/BigData-2026-S2-entregas>. GitHub muestra un aviso amarillo
+1. Entra a <https://github.com/jcarriolaa/Big-Data-Workshops-Hadoop-Hive>. GitHub muestra un aviso amarillo
    *"entrega-... had recent pushes"* con el botón **Compare & pull request**. Haz clic. Si no aparece, pestaña
    **Pull requests → New pull request**, y en *compare* elige tu rama.
 2. Título: `Entrega G2 - Ana Morales` (tu grupo y tu nombre).
