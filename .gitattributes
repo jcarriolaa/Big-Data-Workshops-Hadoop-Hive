@@ -1,0 +1,9 @@
+# Los scripts corren en bash (Git Bash o dentro del contenedor Linux): siempre LF.
+* text=auto
+*.sh   text eol=lf
+*.py   text eol=lf
+*.csv  text eol=lf
+*.txt  text eol=lf
+*.xml  text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf
