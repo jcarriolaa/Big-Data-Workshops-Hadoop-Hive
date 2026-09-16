@@ -15,11 +15,11 @@ palabras.
 
 ## 1. Bitácora (40 %, individual)
 
-Un archivo por estudiante, en **PDF o Markdown**, con el nombre `bitacora_G#_<tu nombre>.pdf`.
-**Fecha de entrega:** la fecha de la defensa oral se anuncia en clase; la bitácora se entrega **antes de que empiece
-esa clase**, por el medio que indique el catedrático. Entregas tardías se evalúan solo con la defensa oral.
+Un archivo `bitacora.md` por estudiante, llenado a partir de [`plantilla-bitacora.md`](plantilla-bitacora.md),
+entregado por git (ver más abajo, "Cómo se entrega").
+**Fecha de entrega:** la fecha de la defensa oral se anuncia en clase; el Pull Request se abre **antes de que empiece
+esa clase**. Entregas tardías se evalúan solo con la defensa oral.
 No es un informe: es evidencia de que lo corriste y de que entendiste lo que viste.
-Extensión sugerida: 4 a 6 páginas con capturas.
 
 ### 1.1 Evidencias (capturas de pantalla, tomadas en tu laptop)
 
@@ -73,6 +73,23 @@ estudiante la ejecuta en su laptop e incluye en su bitácora la consulta, el res
 
 Bitácoras con capturas o respuestas idénticas entre integrantes se califican como una sola y el puntaje se
 divide entre ellas.
+
+### Cómo se entrega
+
+En el repo privado del curso, `github.com/jcarriolaa/BigData-2026-S2-entregas`, con una **rama por estudiante**
+y un **Pull Request** que marca la entrega. La guía paso a paso, con checkpoints, está en
+[`entrega-git.md`](entrega-git.md). En resumen:
+
+| Qué | Cómo |
+|---|---|
+| Rama | `entrega-<carné>-<nombre>-<apellido>`, en minúsculas y sin tildes. Ej.: `entrega-20231234-ana-morales` |
+| Carpeta | `entregas/G#/<carné>-<nombre>-<apellido>/`. No se toca nada fuera de ella |
+| Contenido | `bitacora.md`, `capturas/E1..E6` (PNG/JPG, máx. 1 MB c/u), `consultas.sql`, `docker-compose.yml`, `config/`, `check.txt` |
+| Entrega | Un Pull Request de tu rama contra `main`, título `Entrega G# - Nombre Apellido`. Sin *merge* |
+| Portal | Se sube la URL del PR |
+
+`docker-compose.yml`, `config/` y `check.txt` no dan puntos por sí mismos: son la prueba de que el entorno es tuyo.
+La nota y los comentarios quedan en el PR.
 
 ## 2. Defensa oral (60 %, por grupo con partes individuales)
 

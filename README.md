@@ -92,6 +92,8 @@ tráelo a la siguiente clase.
 El taller se evalúa con una **bitácora individual** (40 %) y una **defensa oral por grupo** (60 %) en la que a
 cada integrante le toca demostrar en vivo una parte distinta, en una clase posterior cuya fecha se anuncia en clase. Los detalles, las preguntas y la rúbrica están en
 [`docs/entregable.md`](docs/entregable.md). Léelo antes de empezar para saber qué capturas tienes que tomar en el camino.
+La bitácora se llena sobre [`docs/plantilla-bitacora.md`](docs/plantilla-bitacora.md) y se entrega por git siguiendo
+[`docs/entrega-git.md`](docs/entrega-git.md).
 
 ---
 
@@ -193,6 +195,8 @@ Big-Data-Workshops-Hadoop-Hive/
 ├── ejemplos/WordCount.java    <- MapReduce para LEER, no para compilar
 └── docs/
     ├── entregable.md          <- bitácora, preguntas y rúbrica
+    ├── plantilla-bitacora.md  <- la bitácora en blanco, para copiar y llenar
+    ├── entrega-git.md         <- cómo entregar: rama y Pull Request
     ├── comandos-hdfs.md       <- equivalencias local vs. HDFS
     └── anexo-yarn.md          <- lectura: cómo se distribuye el cómputo
 ```
