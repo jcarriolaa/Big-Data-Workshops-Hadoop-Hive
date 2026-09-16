@@ -1,0 +1,10 @@
+hadoop divide cada archivo en bloques
+cada bloque se guarda en un datanode
+el namenode guarda el mapa de bloques y datanodes
+el namenode no guarda datos solo guarda metadatos
+hive traduce sql a tareas que corren sobre hadoop
+hive no guarda datos guarda tablas que apuntan a archivos
+un cliente pide el archivo al namenode y lee los bloques de cada datanode
+si un datanode falla el namenode copia sus bloques a otro datanode
+hadoop replica cada bloque en varios datanodes
+sql en hive es mas corto que un programa mapreduce
