@@ -3,33 +3,39 @@
 El taller se califica sobre **100 %** en dos partes. El peso final dentro del rubro "Tareas y prácticas"
 se comunica al cierre del semestre.
 
-| Parte | Peso | Qué es |
-|---|---|---|
-| Bitácora del grupo | 40 % | Documento corto con evidencias y respuestas (este archivo, llenado) |
-| Defensa oral | 60 % | Demostración en vivo de un paso sorteado y preguntas del catedrático |
+| Parte | Peso | Quién | Qué es |
+|---|---|---|---|
+| Bitácora | 40 % | **Individual** | Documento corto con tus evidencias y tus respuestas |
+| Defensa oral | 60 % | **Por grupo, con una parte distinta para cada integrante** | Demostración en vivo y preguntas del catedrático |
 
-## 1. Bitácora del grupo (40 %)
+El taller se hace en grupo (cada grupo tiene su archivo `ventas_G#.csv` y su mini-reto), pero **cada estudiante
+levanta el entorno en su propia laptop, toma sus propias capturas y escribe sus propias respuestas**. Dos bitácoras
+del mismo grupo pueden tener las mismas consultas y resultados parecidos, pero no las mismas capturas ni las mismas
+palabras.
 
-Un solo archivo por grupo, en **PDF o Markdown**, con el nombre `bitacora_G#.pdf`.
+## 1. Bitácora (40 %, individual)
+
+Un archivo por estudiante, en **PDF o Markdown**, con el nombre `bitacora_G#_<tu nombre>.pdf`.
 **Fecha de entrega:** la fecha de la defensa oral se anuncia en clase; la bitácora se entrega **antes de que empiece
 esa clase**, por el medio que indique el catedrático. Entregas tardías se evalúan solo con la defensa oral.
-No es un informe: es evidencia de que lo corrieron y de que entendieron lo que vieron.
+No es un informe: es evidencia de que lo corriste y de que entendiste lo que viste.
 Extensión sugerida: 4 a 6 páginas con capturas.
 
-### 1.1 Evidencias (capturas de pantalla)
+### 1.1 Evidencias (capturas de pantalla, tomadas en tu laptop)
 
-Cada captura debe verse completa y legible. Si es de terminal, que se vea el comando y la salida.
+Cada captura debe verse completa y legible. Si es de terminal, que se vea el comando y la salida. Las capturas
+se toman en tu máquina: los nombres de contenedor, fechas e IPs de tu captura deben coincidir entre sí.
 
 | # | Evidencia | Paso |
 |---|---|---|
 | E1 | Interfaz del NameNode (`localhost:9870`) mostrando **3 DataNodes vivos** | 10 |
-| E2 | Salida de `ubicar_bloques.sh` (o de `hdfs fsck ... -locations`) para **el archivo de ventas de su grupo** | 10 |
+| E2 | Salida de `ubicar_bloques.sh` (o de `hdfs fsck ... -locations`) para **el archivo de ventas de tu grupo** | 10 |
 | E3 | Un bloque físico (`blk_...`) encontrado dentro de un DataNode con `find`, y sus primeras líneas con `head` | 4 o 10 |
-| E4 | Resultado en `beeline` de la **consulta de negocio asignada a su grupo** | 8 |
+| E4 | Resultado en `beeline` de la **consulta de negocio asignada a tu grupo** | 8 |
 | E5 | `hdfs dfs -ls` del warehouse **antes y después** del `DROP` de la tabla administrada y de la externa | 9 |
 | E6 | Estado del clúster con un DataNode apagado: nodo muerto en la UI y salida de `fsck` | 11 |
 
-### 1.2 Preguntas de comprensión (respuestas de 2 a 5 líneas cada una)
+### 1.2 Preguntas de comprensión (respuestas de 2 a 5 líneas cada una, con tus palabras)
 
 1. ¿Qué guarda el NameNode y qué guarda cada DataNode? Justifícalo con lo que encontraste dentro
    de los contenedores (qué archivos hay en `/data/dfs/name` y qué hay en `/data/dfs/data`).
@@ -47,7 +53,8 @@ Cada captura debe verse completa y legible. Si es de terminal, que se vea el com
 ### 1.3 Mini-reto del grupo
 
 Cada grupo recibe por **sorteo en clase** una de estas preguntas de negocio, y la responde con una
-consulta en Hive sobre **su** archivo `ventas_G#.csv`. En la bitácora van la consulta y el resultado.
+consulta en Hive sobre **su** archivo `ventas_G#.csv`. El grupo puede escribir la consulta junto, pero cada
+estudiante la ejecuta en su laptop e incluye en su bitácora la consulta, el resultado y su interpretación.
 
 | Reto | Pregunta de negocio |
 |---|---|
@@ -60,25 +67,39 @@ consulta en Hive sobre **su** archivo `ventas_G#.csv`. En la bitácora van la co
 
 | Criterio | Puntos (de 40) |
 |---|---|
-| Las 6 evidencias están completas, legibles y corresponden a su grupo | 12 |
-| Las 6 preguntas se responden con lo observado (no con definiciones copiadas) | 18 |
+| Las 6 evidencias están completas, legibles y son tuyas (tomadas en tu máquina) | 12 |
+| Las 6 preguntas se responden con lo observado, con tus palabras (no definiciones copiadas) | 18 |
 | Mini-reto: consulta correcta y resultado interpretado en una frase | 10 |
 
-## 2. Defensa oral (60 %)
+Bitácoras con capturas o respuestas idénticas entre integrantes se califican como una sola y el puntaje se
+divide entre ellas.
 
-En una clase posterior al taller (fecha anunciada en clase), cada grupo pasa **8 minutos**:
+## 2. Defensa oral (60 %, por grupo con partes individuales)
 
-1. Se sortea **un paso** del taller (del 4 al 11) y **un integrante** que lo demuestra en vivo en su
-   laptop. Cualquier integrante puede salir sorteado, así que todos deben tener el entorno funcionando.
-2. El catedrático hace preguntas al grupo sobre la bitácora y sobre lo que se ve en pantalla.
+En una clase posterior al taller (fecha anunciada en clase), cada grupo pasa al frente. El taller se divide en
+**partes** y a **cada integrante le toca una distinta**, por sorteo en el momento:
+
+| Parte | Pasos | Qué se demuestra en vivo |
+|---|---|---|
+| P1 | 3 y 4 | Levantar HDFS, subir un archivo, ubicar sus bloques con `fsck` y encontrar uno físicamente en el DataNode |
+| P2 | 5 y 8 | Correr el `wordcount` de MapReduce y la misma consulta en Hive; explicar el `EXPLAIN` |
+| P3 | 7 y 9 | Crear una tabla externa, crear una administrada, hacer `DROP` de ambas y mostrar qué pasó en HDFS |
+| P4 | 10 y 11 | Escalar a 3 DataNodes, subir la replicación, apagar un nodo y mostrar la recuperación |
+
+Cada integrante tiene **3 minutos** para su parte, en su propia laptop, con el entorno ya levantado. Como no sabes
+qué parte te va a tocar, tienes que poder hacer las cuatro. Después de las demostraciones, el catedrático hace
+preguntas a cualquier integrante sobre cualquier parte.
+
+Si el grupo tiene más de cuatro integrantes, dos comparten la parte P4 (uno escala, otro apaga el nodo). Si tiene
+menos, una persona hace dos partes.
 
 ### Rúbrica de la defensa
 
-| Criterio | Puntos (de 60) |
-|---|---|
-| El paso sorteado corre y el integrante explica qué hace cada comando | 25 |
-| Responden preguntas con precisión técnica (bloques, réplicas, NameNode, tablas externas) | 25 |
-| Conectan lo observado con la teoría del curso (GFS/MapReduce, CAP, schema-on-read) | 10 |
+| Criterio | Quién | Puntos (de 60) |
+|---|---|---|
+| Tu parte corre en tu laptop y explicas qué hace cada comando mientras lo ejecutas | Individual | 30 |
+| Respondes preguntas con precisión técnica (bloques, réplicas, NameNode, tablas externas) | Individual | 20 |
+| El grupo conecta lo observado con la teoría del curso (GFS/MapReduce, CAP, schema-on-read) | Grupo | 10 |
 
-Si el entorno no corre en la máquina sorteada, el grupo puede usar la de otro integrante con una
-penalización de 10 puntos.
+Si tu entorno no corre en el momento, puedes usar la laptop de un compañero con una penalización de 10 puntos
+en tu parte individual.

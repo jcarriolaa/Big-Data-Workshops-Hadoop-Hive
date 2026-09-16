@@ -74,7 +74,8 @@ Convenciones:
 
 El taller **arranca en clase y se termina como tarea**. En los 80 minutos de clase la meta es llegar con HDFS y
 Hive funcionando, para que las dudas de instalación y de Docker se resuelvan con el catedrático al lado. Lo que
-queda (consultas, experimento de `DROP`, tres nodos y nodo caído) se hace en casa, en grupo, con esta guía.
+queda (consultas, experimento de `DROP`, tres nodos y nodo caído) se hace en casa con esta guía. Trabaja con tu
+grupo, pero **en tu propia laptop**: la bitácora es individual y en la defensa cada uno demuestra una parte.
 
 | Dónde | Pasos | Meta |
 |---|---|---|
@@ -88,8 +89,8 @@ tráelo a la siguiente clase.
 
 ## Entregable
 
-El taller se evalúa con una **bitácora por grupo** (40 %) y una **defensa oral** con demostración en vivo (60 %),
-en una clase posterior cuya fecha se anuncia en clase. Los detalles, las preguntas y la rúbrica están en
+El taller se evalúa con una **bitácora individual** (40 %) y una **defensa oral por grupo** (60 %) en la que a
+cada integrante le toca demostrar en vivo una parte distinta, en una clase posterior cuya fecha se anuncia en clase. Los detalles, las preguntas y la rúbrica están en
 [`docs/entregable.md`](docs/entregable.md). Léelo antes de empezar para saber qué capturas tienes que tomar en el camino.
 
 ---
