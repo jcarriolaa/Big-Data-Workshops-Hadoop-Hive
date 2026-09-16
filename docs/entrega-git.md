@@ -38,8 +38,10 @@ git --version
 git version 2.4x.x
 ```
 
-Y en GitHub, al abrir <https://github.com/jcarriolaa/BigData-2026-S2-entregas> debes ver el repo, no un 404.
-Si ves 404, el catedrático aún no te ha agregado: avísale.
+Y en GitHub, **con tu sesión iniciada**, al abrir <https://github.com/jcarriolaa/BigData-2026-S2-entregas> debes ver
+el repo, no un 404. El repo es privado: GitHub muestra 404 a cualquiera que no haya sido agregado. Si ves 404, revisa
+que iniciaste sesión con el usuario que le mandaste al catedrático, y que aceptaste la invitación que GitHub te envió
+por correo (*"jcarriolaa invited you to collaborate"*). Si no te ha llegado, avísale.
 
 ## Paso 2: Clona el repo y crea tu rama
 
@@ -155,7 +157,7 @@ Y en GitHub, en el desplegable de ramas del repo, aparece la tuya.
 | `git add` dice `The following paths are ignored` | Estás intentando subir un archivo bloqueado (CSV grande, `.DS_Store`). No hace falta subirlo. |
 | `Please tell me who you are` | Falta el Paso 1.3 (`git config --global user.name/email`). |
 | `remote: error: File ... is 25.00 MB; this exceeds GitHub's file size limit` | Una captura o archivo demasiado grande. Comprímela o recórtala; máximo 1 MB por imagen. Quítala del commit con `git rm --cached <archivo>` y vuelve a commitear. |
-| `! [rejected] ... (protected branch hook declined)` | Estás intentando pushear a `main`. Revisa que estés en tu rama (`git branch --show-current`). |
+| `git push` dice `main -> main` en vez de tu rama | Hiciste push a `main` por error. Avísale al catedrático de inmediato (se revierte sin problema) y revisa que estés en tu rama con `git branch --show-current`. |
 | `Permission denied` / `403` | Tu usuario de GitHub no está en el repo. Ver Paso 1.2. |
 
 ## Paso 5: Abre el Pull Request
