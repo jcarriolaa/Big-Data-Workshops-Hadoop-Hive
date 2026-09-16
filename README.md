@@ -193,6 +193,7 @@ Big-Data-Workshops-Hadoop-Hive/
 │   ├── ubicar_bloques.sh      <- en qué DataNode está cada bloque de un archivo
 │   └── generar_ventas.py      <- generador de los CSV de ventas (no hace falta correrlo)
 ├── ejemplos/WordCount.java    <- MapReduce para LEER, no para compilar
+├── entregas/G1..G4/           <- aquí va tu carpeta de entrega (ver docs/entrega-git.md)
 └── docs/
     ├── entregable.md          <- bitácora, preguntas y rúbrica
     ├── plantilla-bitacora.md  <- la bitácora en blanco, para copiar y llenar
