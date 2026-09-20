@@ -34,6 +34,28 @@ services:
       - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
       - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
 
+  hiveserver2:
+    image: apache/hive:4.0.0
+    container_name: hiveserver2
+    hostname: hiveserver2
+    platform: linux/amd64
+    depends_on:
+      - namenode
+    environment:
+      SERVICE_NAME: hiveserver2          # la imagen puede arrancar como metastore o como hiveserver2
+      HIVE_CUSTOM_CONF_DIR: /hive_custom_conf
+      # Apple Silicon: beeline (que usa schematool) arranca jline, que ejecuta "stty"
+      # en un subproceso para medir el terminal. Ese fork se bloquea bajo Rosetta y
+      # el contenedor no tiene TTY de todos modos. Esto evita que jline lo intente.
+      _JAVA_OPTIONS: "-Djline.terminal=jline.UnsupportedTerminal"
+    ports:
+      - "10000:10000"   # puerto JDBC/Thrift (beeline se conecta aqui)
+      - "10002:10002"   # interfaz web de HiveServer2
+    volumes:
+      - ./config/hadoop/core-site.xml:/hive_custom_conf/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/hive_custom_conf/hdfs-site.xml
+      - ./config/hive/hive-site.xml:/hive_custom_conf/hive-site.xml
+
 volumes:
   namenode_data:
   datanode1_data:
