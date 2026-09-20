@@ -1,0 +1,39 @@
+name: hadoop-hive
+
+services:
+  namenode:
+    image: apache/hadoop:3.4.1
+    container_name: namenode
+    hostname: namenode
+    platform: linux/amd64
+    command: ["hdfs", "namenode"]
+    environment:
+      # La imagen formatea el NameNode la primera vez si esta carpeta no existe.
+      ENSURE_NAMENODE_DIR: /data/dfs/name
+    ports:
+      - "9870:9870"     # interfaz web del NameNode
+    volumes:
+      - namenode_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+      - ./data:/archivos          # los datasets de tu laptop, visibles dentro del contenedor
+      - ./scripts:/scripts
+
+  datanode1:
+    image: apache/hadoop:3.4.1
+    container_name: datanode1
+    hostname: datanode1
+    platform: linux/amd64
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9864:9864"     # interfaz web del DataNode
+    volumes:
+      - datanode1_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+
+volumes:
+  namenode_data:
+  datanode1_data:
