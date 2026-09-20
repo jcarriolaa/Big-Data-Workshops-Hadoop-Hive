@@ -38,6 +38,9 @@ jobs:
           git checkout "pr-${PR}"
           echo "RAMA=$(gh pr view "$PR" --json headRefName --jq .headRefName)" >> "$GITHUB_ENV"
 
+      - name: Usar siempre el validador de main (la rama del PR puede no tenerlo o haberlo cambiado)
+        run: git checkout origin/main -- scripts/validar_entrega.py
+
       - name: Python
         uses: actions/setup-python@v5
         with:
@@ -59,6 +62,8 @@ jobs:
           MARCA="<!-- validar-entrega -->"
           if [ "${{ steps.validar.outcome }}" = "failure" ] && [ -f validacion.md ]; then
             { echo "$MARCA"; echo "### Validación automática de la entrega"; echo; cat validacion.md; } > cuerpo.md
+          elif [ "${{ steps.validar.outcome }}" = "failure" ]; then
+            { echo "$MARCA"; echo "### Validación automática de la entrega"; echo; echo "⚠️ La validación no pudo ejecutarse. Revisa el log en la pestaña Actions."; } > cuerpo.md
           else
             # Solo actualiza si ya había un comentario de una corrida anterior; si no, no dice nada.
             { echo "$MARCA"; echo "### Validación automática de la entrega"; echo; echo "✅ Todo en orden en la última corrida."; } > cuerpo.md
