@@ -1,0 +1,19 @@
+solo@debian:~/Documents/BigData/Big-Data-Workshops-Hadoop-Hive$ bash scripts/check.sh cluster
+✅ Contenedor namenode corriendo
+✅ Contenedor datanode1 corriendo
+✅ Contenedor datanode2 corriendo
+✅ Contenedor datanode3 corriendo
+✅ DataNodes vivos según el NameNode: 3
+✅ Replicación promedio en /datasets/ventas: 2.0
+
+Todo en orden.
+solo@debian:~/Documents/BigData/Big-Data-Workshops-Hadoop-Hive$ bash scripts/check.sh
+✅ Docker instalado: Docker version 29.8.0, build 88096ef
+✅ Docker Compose v2: 5.5.1
+✅ Docker Desktop está corriendo
+✅ RAM asignada a Docker: 7 GB
+✅ Imagen apache/hadoop:3.4.1 descargada
+✅ Imagen apache/hive:4.0.0 descargada
+
+Todo en orden.
+
