@@ -194,6 +194,9 @@ def terminar(carpeta="?"):
     if resumen:
         with open(resumen, "a") as f:
             f.write(salida + "\n")
+    archivo = os.environ.get("SALIDA_MD")
+    if archivo:
+        Path(archivo).write_text(salida + "\n")
     return 1 if fails else 0
 
 

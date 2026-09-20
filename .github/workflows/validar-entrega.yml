@@ -1,22 +1,42 @@
-# Valida la estructura de cada entrega al abrir un PR hacia main (y en cada push nuevo al PR).
-# No califica: solo revisa lo mecánico. El resultado aparece como ✅/❌ en el PR y en la pestaña Checks.
+# Valida la estructura de cada entrega. Dos formas de correr:
+#   - automática: al abrir un PR hacia main y en cada push nuevo al PR (✅/❌ en el PR);
+#   - manual: pestaña Actions → "Validar entrega" → Run workflow → número de PR.
+# Si hay ❌ deja un comentario en el PR (uno solo, que se actualiza en cada corrida) con la tabla de lo que falta.
+# No califica: solo revisa lo mecánico.
 name: Validar entrega
 
 on:
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "Número del PR a validar"
+        required: true
+        type: number
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   validar:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR: ${{ github.event_name == 'workflow_dispatch' && inputs.pr || github.event.pull_request.number }}
     steps:
-      - name: Descargar el repo con historial (para comparar contra main)
+      - name: Descargar el repo con historial
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Traer la rama del PR (solo en disparo manual)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git fetch origin "pull/${PR}/head:pr-${PR}"
+          git checkout "pr-${PR}"
+          echo "RAMA=$(gh pr view "$PR" --json headRefName --jq .headRefName)" >> "$GITHUB_ENV"
 
       - name: Python
         uses: actions/setup-python@v5
@@ -24,7 +44,37 @@ jobs:
           python-version: "3.12"
 
       - name: Validar la entrega
+        id: validar
+        continue-on-error: true
         env:
-          BASE_REF: origin/${{ github.base_ref }}
-          RAMA: ${{ github.head_ref }}
+          BASE_REF: origin/main
+          RAMA: ${{ env.RAMA || github.head_ref }}
+          SALIDA_MD: validacion.md
         run: python3 scripts/validar_entrega.py
+
+      - name: Comentar en el PR si hay ❌ (actualiza el comentario anterior si existe)
+        if: always()
+        continue-on-error: true   # en PRs desde fork el token no puede comentar; queda solo la ✅/❌
+        run: |
+          MARCA="<!-- validar-entrega -->"
+          if [ "${{ steps.validar.outcome }}" = "failure" ] && [ -f validacion.md ]; then
+            { echo "$MARCA"; echo "### Validación automática de la entrega"; echo; cat validacion.md; } > cuerpo.md
+          else
+            # Solo actualiza si ya había un comentario de una corrida anterior; si no, no dice nada.
+            { echo "$MARCA"; echo "### Validación automática de la entrega"; echo; echo "✅ Todo en orden en la última corrida."; } > cuerpo.md
+          fi
+          ID=$(gh api "repos/${{ github.repository }}/issues/${PR}/comments" --paginate \
+                --jq "map(select(.body | startswith(\"$MARCA\")) | .id) | first // empty")
+          if [ -n "$ID" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$ID" -F body=@cuerpo.md > /dev/null
+            echo "Comentario actualizado ($ID)"
+          elif [ "${{ steps.validar.outcome }}" = "failure" ]; then
+            gh pr comment "$PR" --body-file cuerpo.md
+            echo "Comentario creado"
+          else
+            echo "Sin ❌ y sin comentario previo: no se comenta"
+          fi
+
+      - name: Resultado
+        if: steps.validar.outcome == 'failure'
+        run: exit 1
