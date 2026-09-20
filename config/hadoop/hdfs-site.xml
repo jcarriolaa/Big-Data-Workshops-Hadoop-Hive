@@ -3,7 +3,7 @@
   <!-- Cuántas copias de cada bloque. Con un solo DataNode solo puede haber una. -->
   <property>
     <name>dfs.replication</name>
-    <value>1</value>
+    <value>2</value>
   </property>
 
   <!-- Tamaño de bloque: 1 MB, el mínimo permitido. El valor real de producción es 128 MB.

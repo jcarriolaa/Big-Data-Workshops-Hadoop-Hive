@@ -34,6 +34,36 @@ services:
       - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
       - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
 
+  datanode2:
+    image: apache/hadoop:3.4.1
+    container_name: datanode2
+    hostname: datanode2
+    platform: linux/amd64
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9865:9864"
+    volumes:
+      - datanode2_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+
+  datanode3:
+    image: apache/hadoop:3.4.1
+    container_name: datanode3
+    hostname: datanode3
+    platform: linux/amd64
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9866:9864"
+    volumes:
+      - datanode3_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+
   hiveserver2:
     image: apache/hive:4.0.0
     container_name: hiveserver2
@@ -55,3 +85,5 @@ services:
 volumes:
   namenode_data:
   datanode1_data:
+  datanode2_data:
+  datanode3_data:
