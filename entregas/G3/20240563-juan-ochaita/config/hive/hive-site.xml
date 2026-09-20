@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- Dónde guarda Hive los datos de las tablas ADMINISTRADAS. Es una ruta de HDFS. -->
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>/user/hive/warehouse</value>
+  </property>
+
+  <!-- Carpeta temporal de Hive en HDFS para resultados intermedios. -->
+  <property>
+    <name>hive.exec.scratchdir</name>
+    <value>/tmp/hive</value>
+  </property>
+
+  <!-- Motor de ejecución: Tez en modo local (un solo proceso, sin YARN).
+       Estas propiedades son las que trae la imagen por defecto; hay que repetirlas
+       porque este archivo reemplaza al suyo. -->
+  <property>
+    <name>hive.execution.engine</name>
+    <value>tez</value>
+  </property>
+  <property>
+    <name>tez.local.mode</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>tez.runtime.optimize.local.fetch</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hive.exec.submit.local.task.via.child</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>local</value>
+  </property>
+  <property>
+    <name>hive.tez.exec.inplace.progress</name>
+    <value>false</value>
+  </property>
+
+  <!-- Hive habla con HDFS como usuario "hive", no como el usuario que envía la consulta. -->
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>metastore.metastore.event.db.notification.api.auth</name>
+    <value>false</value>
+  </property>
+
+  <!-- Hive 4 convierte por defecto las tablas administradas no transaccionales en externas
+       "con purga". Lo desactivamos para que el experimento del Paso 9 muestre una tabla
+       administrada de verdad. -->
+  <property>
+    <name>metastore.metadata.transformer.class</name>
+    <value></value>
+  </property>
+
+  <property>
+    <name>hive.server2.thrift.bind.host</name>
+    <value>0.0.0.0</value>
+  </property>
+
+  <property>
+    <name>hive.server2.thrift.port</name>
+    <value>10000</value>
+  </property>
+
+  <property>
+    <name>hive.server2.transport.mode</name>
+    <value>binary</value>
+  </property>
+</configuration>
