@@ -1,0 +1,169 @@
+hiveserver2  | + : derby
+hiveserver2  | + SKIP_SCHEMA_INIT=false
+hiveserver2  | + [[ '' = \t\r\u\e ]]
+hiveserver2  | + VERBOSE_MODE=
+hiveserver2  | + export HIVE_CONF_DIR=/opt/hive/conf
+hiveserver2  | + HIVE_CONF_DIR=/opt/hive/conf
+hiveserver2  | + '[' -d /hive_custom_conf ']'
+hiveserver2  | + find /hive_custom_conf -type f -exec ln -sfn '{}' /opt/hive/conf/ ';'
+hiveserver2  | + export HADOOP_CONF_DIR=/opt/hive/conf
+hiveserver2  | + HADOOP_CONF_DIR=/opt/hive/conf
+hiveserver2  | + export TEZ_CONF_DIR=/opt/hive/conf
+hiveserver2  | + TEZ_CONF_DIR=/opt/hive/conf
+hiveserver2  | + export 'HADOOP_CLIENT_OPTS= -Xmx1G '
+hiveserver2  | + HADOOP_CLIENT_OPTS=' -Xmx1G '
+hiveserver2  | + [[ false == \f\a\l\s\e ]]
+hiveserver2  | + initialize_hive
+hiveserver2  | + COMMAND=-initOrUpgradeSchema
+hiveserver2  | ++ echo 4.0.0
+hiveserver2  | ++ cut -d . -f1
+hiveserver2  | + '[' 4 -lt 4 ']'
+hiveserver2  | + /opt/hive/bin/schematool -dbType derby -initOrUpgradeSchema
+hiveserver2  | WARNING: log4j.properties is not found. HADOOP_CONF_DIR may be incomplete.
+hiveserver2  | SLF4J: Class path contains multiple SLF4J bindings.
+hiveserver2  | SLF4J: Found binding in [jar:file:/opt/hive/lib/log4j-slf4j-impl-2.18.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+hiveserver2  | SLF4J: Found binding in [jar:file:/opt/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+hiveserver2  | SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+hiveserver2  | SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+hiveserver2  | Metastore connection URL:	 jdbc:derby:;databaseName=metastore_db;create=true
+hiveserver2  | Metastore connection Driver :	 org.apache.derby.jdbc.EmbeddedDriver
+hiveserver2  | Metastore connection User:	 APP
+hiveserver2  | Initializing the schema to: 4.0.0
+hiveserver2  | Metastore connection URL:	 jdbc:derby:;databaseName=metastore_db;create=true
+hiveserver2  | Metastore connection Driver :	 org.apache.derby.jdbc.EmbeddedDriver
+hiveserver2  | Metastore connection User:	 APP
+hiveserver2  | Starting metastore schema initialization to 4.0.0
+hiveserver2  | Initialization script hive-schema-4.0.0.derby.sql
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
+hiveserver2  | 
