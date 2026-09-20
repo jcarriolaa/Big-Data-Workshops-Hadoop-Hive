@@ -132,6 +132,14 @@ entregas/G2/20231234-ana-morales/consultas.sql
 entregas/G2/20231234-ana-morales/docker-compose.yml
 ```
 
+Antes de subir, valida tu carpeta con el mismo script que corre GitHub al abrir el PR:
+
+```bash
+python3 scripts/validar_entrega.py entregas/G2/20231234-ana-morales
+```
+
+Debe terminar con `0 ❌`. Cada ❌ te dice qué falta y cómo corregirlo. Los ⚠️ no bloquean.
+
 ## Paso 4: Commit y push
 
 ```bash
@@ -190,6 +198,8 @@ Esto se hace en el navegador:
 ```
 
 4. Botón **Create pull request**. **No** hagas clic en *Merge*: el PR se queda abierto y ahí se califica.
+   A los pocos segundos GitHub corre la validación automática y muestra ✅ o ❌ al final del PR. Si sale ❌,
+   haz clic en *Details* para ver qué falta, corrige, `git add`, `git commit`, `git push`, y se vuelve a validar sola.
 5. Copia la URL del PR (algo como `.../pull/17`) y súbela al portal como tu entrega.
 
 ### ✅ Checkpoint

@@ -1,0 +1,30 @@
+# Valida la estructura de cada entrega al abrir un PR hacia main (y en cada push nuevo al PR).
+# No califica: solo revisa lo mecánico. El resultado aparece como ✅/❌ en el PR y en la pestaña Checks.
+name: Validar entrega
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repo con historial (para comparar contra main)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar la entrega
+        env:
+          BASE_REF: origin/${{ github.base_ref }}
+          RAMA: ${{ github.head_ref }}
+        run: python3 scripts/validar_entrega.py
