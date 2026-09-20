@@ -542,8 +542,8 @@ docker exec datanode1 sh -c 'head -3 $(find /data/dfs/data -name blk_1073741827)
 
 ```
 id_venta,fecha,pais,ciudad,categoria,producto,cantidad,precio_unitario,canal
-1,2024-07-14,Guatemala,Quetzaltenango,Hogar,Cafetera,1,689.12,web
-2,2024-02-03,Mexico,Guadalajara,Ropa,Zapatos,2,498.30,tienda
+1,2024-08-12,Guatemala,Antigua Guatemala,Alimentos,Miel,1,76.70,tienda
+2,2024-06-15,Guatemala,Ciudad de Guatemala,Alimentos,Miel,1,69.41,tienda
 ```
 
 Y mira el final del mismo bloque:
