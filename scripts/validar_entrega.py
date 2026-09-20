@@ -24,6 +24,8 @@ PREGUNTAS = 6
 MIN_PALABRAS = 15
 AYUDAS = ["Copia este archivo como", "Borra las líneas de ayuda", "Cada captura debe verse completa",
           "2 a 5 líneas por respuesta", "Si te atoraste en algún paso"]
+# Texto de la plantilla que va después del enunciado en negrita y no es respuesta del estudiante
+COLAS_ENUNCIADO = ["Justifícalo con lo que encontraste en `/data/dfs/name` y en `/data/dfs/data`."]
 
 resultados = []  # (estado, nombre, detalle)
 
@@ -151,6 +153,8 @@ def main():
         for i in range(1, PREGUNTAS + 1):
             mm = re.search(rf"\*\*{i}\.\s.*?\*\*(.*?)(?=\n\*\*{i+1}\.\s|\n## |\Z)", bit, re.S)
             t = (mm.group(1) if mm else "").strip()
+            for cola in COLAS_ENUNCIADO:
+                t = t.replace(cola, "")
             t = "\n".join(l for l in t.splitlines() if not l.strip().startswith(">")).strip()
             n = len(t.split())
             if n < MIN_PALABRAS:
