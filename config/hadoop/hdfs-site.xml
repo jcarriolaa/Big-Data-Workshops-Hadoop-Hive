@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- Cuántas copias de cada bloque. Con un solo DataNode solo puede haber una. -->
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+
+  <!-- Tamaño de bloque: 1 MB, el mínimo permitido. El valor real de producción es 128 MB.
+       Lo bajamos para que un archivo de 5 MB se parta en varios bloques y podamos verlos. -->
+  <property>
+    <name>dfs.blocksize</name>
+    <value>1048576</value>
+  </property>
+
+  <!-- Dónde guarda el NameNode sus metadatos y dónde guarda cada DataNode sus bloques.
+       Son rutas DENTRO de cada contenedor; en el Paso 4 vas a entrar a verlas. -->
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/data/dfs/name</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>/data/dfs/data</value>
+  </property>
+
+  <!-- Cada cuánto el NameNode revisa si un DataNode dejó de mandar latidos.
+       Por defecto tarda 10 minutos en declararlo muerto; con este valor tarda ~50 segundos.
+       Solo para el taller: en producción no conviene ser tan impaciente. -->
+  <property>
+    <name>dfs.namenode.heartbeat.recheck-interval</name>
+    <value>10000</value>
+  </property>
+
+  <!-- Sin permisos de usuario en HDFS. Simplifica el laboratorio: Hive corre con otro usuario
+       que el que sube los archivos. En producción esto va con permisos y Kerberos. -->
+  <property>
+    <name>dfs.permissions.enabled</name>
+    <value>false</value>
+  </property>
+</configuration>
