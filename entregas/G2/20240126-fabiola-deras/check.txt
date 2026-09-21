@@ -1,0 +1,14 @@
+✅ Contenedor namenode corriendo
+✅ Contenedor datanode1 corriendo
+✅ Contenedor datanode2 corriendo
+✅ Contenedor datanode3 corriendo
+✅ DataNodes vivos según el NameNode: 3
+✅ Replicación promedio en /datasets/ventas: 2.0
+
+Todo en orden.
+✅ Contenedor hiveserver2 corriendo
+✅ Tabla empleados existe en Hive
+✅ Tabla word_count existe en Hive
+✅ Tabla ventas existe en Hive
+
+Todo en orden.
