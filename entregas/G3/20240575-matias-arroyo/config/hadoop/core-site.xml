@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- Sistema de archivos por defecto: HDFS, hablando con el NameNode en el puerto 9000.
+       "namenode" es el nombre del contenedor; Docker lo resuelve como si fuera un DNS. -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://namenode:9000</value>
+  </property>
+</configuration>
