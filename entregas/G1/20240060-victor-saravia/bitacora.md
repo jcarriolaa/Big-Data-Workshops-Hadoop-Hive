@@ -10,8 +10,8 @@
 
 ### E1. NameNode con 3 DataNodes vivos
 
-![E1, Summary](capturas/E1-nodes-3%20(1).png)
-![E1, DataNodes](capturas/E1-nodes-3%20(2).png)
+![E1, Summary](capturas/E1-nodes-3-1.png)
+![E1, DataNodes](capturas/E1-nodes-3-2.png)
 
 Lo que muestra: el Summary del NameNode llegó a tres nodos vivos después de iniciar datanode2 y datanode3.
 
