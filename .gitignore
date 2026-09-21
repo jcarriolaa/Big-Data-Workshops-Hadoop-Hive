@@ -1,9 +1,0 @@
-.DS_Store
-Thumbs.db
-# Salidas locales que no deben subirse
-salida/
-descargas/
-__pycache__/
-
-# Datos generados localmente
-data/ventas/ventas_G2.csv
