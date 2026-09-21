@@ -1,0 +1,28 @@
+=== bash scripts/check.sh hdfs ===
+✅ Contenedor namenode corriendo
+✅ Contenedor datanode1 corriendo
+✅ DataNodes vivos según el NameNode: 3
+✅ Existe /datasets/empleados en HDFS
+✅ Existe /datasets/word_count en HDFS
+✅ Existe /datasets/ventas en HDFS
+✅ fsck /datasets: HEALTHY
+
+Todo en orden.
+
+=== bash scripts/check.sh hive ===
+✅ Contenedor hiveserver2 corriendo
+✅ Tabla empleados existe en Hive
+✅ Tabla word_count existe en Hive
+✅ Tabla ventas existe en Hive
+
+Todo en orden.
+
+=== bash scripts/check.sh cluster ===
+✅ Contenedor namenode corriendo
+✅ Contenedor datanode1 corriendo
+✅ Contenedor datanode2 corriendo
+✅ Contenedor datanode3 corriendo
+✅ DataNodes vivos según el NameNode: 3
+✅ Replicación promedio en /datasets/ventas: 2.0
+
+Todo en orden.

@@ -3,7 +3,7 @@
 - **Nombre:** Matías Arroyo
 - **Carné:** 20240575
 - **Grupo:** G3
-- **Mini-reto asignado al grupo:** (pendiente de sorteo en clase)
+- **Mini-reto asignado al grupo:** C
 - **Sistema operativo y chip de tu laptop:** macOS 14.6.1 (Sonoma), Apple M3 Pro
 
 ## 1. Evidencias
@@ -75,21 +75,39 @@ Corrí el `wordcount` de MapReduce y la consulta equivalente en Hive con `LATERA
 
 ## 3. Mini-reto del grupo
 
-**Pregunta de negocio (reto ___):**
+**Pregunta de negocio (reto C):** Ventas totales por mes (`substr(fecha, 1, 7)`). ¿Cuál fue el mejor mes y cuál el peor?
 
 **Consulta:**
 
 ```sql
-
+SELECT substr(fecha, 1, 7) AS mes, ROUND(SUM(cantidad * precio_unitario), 2) AS total_ventas
+FROM ventas
+GROUP BY substr(fecha, 1, 7)
+ORDER BY mes;
 ```
 
 **Resultado (pega la tabla que devolvió beeline):**
 
 ```
-
++----------+---------------+
+|   mes    | total_ventas  |
++----------+---------------+
+| 2024-01  | 10837272.60   |
+| 2024-02  | 10529744.95   |
+| 2024-03  | 10564062.27   |
+| 2024-04  | 10657681.12   |
+| 2024-05  | 10896129.57   |
+| 2024-06  | 10490359.94   |
+| 2024-07  | 10192715.23   |
+| 2024-08  | 10962369.24   |
+| 2024-09  | 10631824.70   |
+| 2024-10  | 11300260.07   |
+| 2024-11  | 10636962.42   |
+| 2024-12  | 10622992.62   |
++----------+---------------+
 ```
 
-**Interpretación en una frase:**
+**Interpretación en una frase:** Octubre de 2024 fue el mejor mes de ventas ($11,300,260.07) y julio de 2024 el peor ($10,192,715.23), aunque las ventas se mantienen bastante estables mes a mes (todas rondan los $10.5-11.3 millones), sin una tendencia estacional marcada en mi archivo `ventas_G3.csv`.
 
 ## 4. Problemas que tuve y cómo los resolví
 
