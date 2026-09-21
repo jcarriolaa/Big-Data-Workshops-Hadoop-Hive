@@ -17,39 +17,46 @@
 
 ![E1](capturas/E1.png)
 
-Lo que muestra:
+Lo que muestra: la interfaz web del NameNode en el puerto 9870, con datanode1,
+datanode2 y datanode3 registrados como Live Nodes después de escalar el clúster.
 
 ### E2. Ubicación de los bloques del archivo de mi grupo (Paso 10)
 
 ![E2](capturas/E2.png)
 
-Lo que muestra:
+Lo que muestra: la salida de `ubicar_bloques.sh` para ventas_G3.csv, con los 5
+bloques del archivo y en qué DataNodes tiene cada uno sus dos copias.
 
 ### E3. Un bloque físico dentro de un DataNode (Paso 4 o 10)
 
 ![E3](capturas/E3.png)
 
-Lo que muestra:
+Lo que muestra: el resultado de `find` localizando un bloque dentro de datanode1,
+y las primeras líneas de ese bloque con `head`, mostrando el contenido real del CSV.
 
 ### E4. Resultado de la consulta de negocio de mi grupo (Paso 8)
 
 ![E4](capturas/E4.png)
 
-Lo que muestra:
+Lo que muestra: el resultado en beeline de la consulta del Reto B (los 5 productos
+con más unidades vendidas), ejecutada sobre la tabla `ventas` de mi grupo.
 
 ### E5. Warehouse antes y después del `DROP` (Paso 9)
 
 ![E5 antes](capturas/E5-1.png)
 ![E5 después](capturas/E5-2.png)
 
-Lo que muestra:
+Lo que muestra: el listado de `/user/hive/warehouse` antes del `DROP TABLE
+empleados_admin` (con la carpeta y sus datos presentes) y después (la carpeta ya
+no existe), comparado con `/datasets/empleados`, que sigue intacto por ser externa.
 
 ### E6. Clúster con un DataNode apagado (Paso 11)
 
 ![E6 terminal](capturas/E6-1.png)
 ![E6 navegador](capturas/E6-2.png)
 
-Lo que muestra:
+Lo que muestra: el reporte de `dfsadmin` y `fsck` con datanode2 marcado como
+muerto tras apagarlo, confirmando que el clúster sigue HEALTHY sin bloques perdidos.
 
 ## 2. Preguntas de comprensión
 
