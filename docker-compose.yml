@@ -78,9 +78,16 @@ services:
       # en un subproceso para medir el terminal. Ese fork se bloquea bajo Rosetta y
       # el contenedor no tiene TTY de todos modos. Esto evita que jline lo intente.
       _JAVA_OPTIONS: "-Djline.terminal=jline.UnsupportedTerminal"
+      # El PID de HiveServer2 se guarda por defecto en /opt/hive/conf y sobrevive a los
+      # reinicios: al volver a arrancar, el script ve un PID "vivo" (que ahora es el
+      # suyo) y se niega con "HiveServer2 running as process 7. Stop it first".
+      # En un tmpfs el archivo desaparece en cada arranque.
+      HIVESERVER2_PID_DIR: /run/hs2
     ports:
       - "10000:10000"   # puerto JDBC/Thrift (beeline se conecta aqui)
       - "10002:10002"   # interfaz web de HiveServer2
+    tmpfs:
+      - /run/hs2
     volumes:
       - ./config/hadoop/core-site.xml:/hive_custom_conf/core-site.xml
       - ./config/hadoop/hdfs-site.xml:/hive_custom_conf/hdfs-site.xml
