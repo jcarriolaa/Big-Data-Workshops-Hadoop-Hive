@@ -4,3 +4,6 @@ Thumbs.db
 salida/
 descargas/
 __pycache__/
+
+# Datos generados localmente
+data/ventas/ventas_G2.csv
