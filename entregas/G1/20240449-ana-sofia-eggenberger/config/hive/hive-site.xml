@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- Directorio HDFS de las tablas administradas por Hive. -->
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>/user/hive/warehouse</value>
+  </property>
+
+  <!-- Directorio HDFS temporal para resultados intermedios. -->
+  <property>
+    <name>hive.exec.scratchdir</name>
+    <value>/tmp/hive</value>
+  </property>
+
+  <!-- Tez corre de manera local: el taller no configura YARN. -->
+  <property>
+    <name>hive.execution.engine</name>
+    <value>tez</value>
+  </property>
+  <property>
+    <name>tez.local.mode</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>tez.runtime.optimize.local.fetch</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hive.exec.submit.local.task.via.child</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>local</value>
+  </property>
+  <property>
+    <name>hive.tez.exec.inplace.progress</name>
+    <value>false</value>
+  </property>
+
+  <!-- Hive usa su propio usuario al trabajar con HDFS en el laboratorio. -->
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>metastore.metastore.event.db.notification.api.auth</name>
+    <value>false</value>
+  </property>
+
+  <!-- Mantiene las tablas administradas como MANAGED_TABLE en Hive 4. -->
+  <property>
+    <name>metastore.metadata.transformer.class</name>
+    <value> </value>
+  </property>
+</configuration>

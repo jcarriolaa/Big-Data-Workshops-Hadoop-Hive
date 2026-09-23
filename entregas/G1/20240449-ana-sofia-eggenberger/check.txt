@@ -1,0 +1,38 @@
+===== PREREQ =====
+✅ Docker instalado: Docker version 29.8.0, build 88096ef
+✅ Docker Compose v2: 5.5.1
+✅ Docker Desktop está corriendo
+✅ RAM asignada a Docker: 7 GB
+✅ Imagen apache/hadoop:3.4.1 descargada
+✅ Imagen apache/hive:4.0.0 descargada
+
+Todo en orden.
+
+===== HDFS =====
+✅ Contenedor namenode corriendo
+✅ Contenedor datanode1 corriendo
+✅ DataNodes vivos según el NameNode: 3
+✅ Existe /datasets/empleados en HDFS
+✅ Existe /datasets/word_count en HDFS
+✅ Existe /datasets/ventas en HDFS
+✅ fsck /datasets: HEALTHY
+
+Todo en orden.
+
+===== HIVE =====
+✅ Contenedor hiveserver2 corriendo
+✅ Tabla empleados existe en Hive
+✅ Tabla word_count existe en Hive
+✅ Tabla ventas existe en Hive
+
+Todo en orden.
+
+===== CLUSTER =====
+✅ Contenedor namenode corriendo
+✅ Contenedor datanode1 corriendo
+✅ Contenedor datanode2 corriendo
+✅ Contenedor datanode3 corriendo
+✅ DataNodes vivos según el NameNode: 3
+✅ Replicación promedio en /datasets/ventas: 2.0
+
+Todo en orden.
