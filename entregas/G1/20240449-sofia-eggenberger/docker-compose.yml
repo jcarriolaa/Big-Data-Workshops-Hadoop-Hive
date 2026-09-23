@@ -1,0 +1,90 @@
+name: hadoop-hive
+
+services:
+  namenode:
+    image: apache/hadoop:3.4.1
+    container_name: namenode
+    hostname: namenode
+    platform: linux/amd64
+    command: ["hdfs", "namenode"]
+    environment:
+      # Formatea el NameNode una sola vez cuando aún no existe su directorio de datos.
+      ENSURE_NAMENODE_DIR: /data/dfs/name
+    ports:
+      - "9870:9870"
+    volumes:
+      - namenode_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+      - ./data:/archivos
+      - ./scripts:/scripts
+
+  datanode1:
+    image: apache/hadoop:3.4.1
+    container_name: datanode1
+    hostname: datanode1
+    platform: linux/amd64
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9864:9864"
+    volumes:
+      - datanode1_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+
+  datanode2:
+    image: apache/hadoop:3.4.1
+    container_name: datanode2
+    hostname: datanode2
+    platform: linux/amd64
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9865:9864"
+    volumes:
+      - datanode2_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+
+  datanode3:
+    image: apache/hadoop:3.4.1
+    container_name: datanode3
+    hostname: datanode3
+    platform: linux/amd64
+    command: ["hdfs", "datanode"]
+    depends_on:
+      - namenode
+    ports:
+      - "9866:9864"
+    volumes:
+      - datanode3_data:/data
+      - ./config/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml
+
+  hiveserver2:
+    image: apache/hive:4.0.0
+    container_name: hiveserver2
+    hostname: hiveserver2
+    platform: linux/amd64
+    depends_on:
+      - namenode
+    environment:
+      SERVICE_NAME: hiveserver2
+      HIVE_CUSTOM_CONF_DIR: /hive_custom_conf
+    ports:
+      - "10000:10000"
+      - "10002:10002"
+    volumes:
+      - ./config/hadoop/core-site.xml:/hive_custom_conf/core-site.xml
+      - ./config/hadoop/hdfs-site.xml:/hive_custom_conf/hdfs-site.xml
+      - ./config/hive/hive-site.xml:/hive_custom_conf/hive-site.xml
+      - ./config/hive/hive-site.xml:/opt/hive/conf/hive-site.xml
+
+volumes:
+  namenode_data:
+  datanode1_data:
+  datanode2_data:
+  datanode3_data:

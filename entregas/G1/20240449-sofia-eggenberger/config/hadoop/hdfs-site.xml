@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- Dos copias por bloque para la fase con tres DataNodes. -->
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+
+  <!-- Tamaño de bloque: 1 MB, el mínimo permitido. -->
+  <property>
+    <name>dfs.blocksize</name>
+    <value>1048576</value>
+  </property>
+
+  <!-- Rutas dentro de los contenedores para metadatos y bloques. -->
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/data/dfs/name</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>/data/dfs/data</value>
+  </property>
+
+  <!-- Acelera la detección de un DataNode caído solo para este taller. -->
+  <property>
+    <name>dfs.namenode.heartbeat.recheck-interval</name>
+    <value>10000</value>
+  </property>
+
+  <!-- Simplifica el laboratorio: Hive y Hadoop pueden usar usuarios distintos. -->
+  <property>
+    <name>dfs.permissions.enabled</name>
+    <value>false</value>
+  </property>
+</configuration>
